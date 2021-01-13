@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "Long", "READ_TIMEOUT", "2000L"
+        buildConfigField "Long", "WRITE_TIMEOUT", "2000L"
+        buildConfigField "Long", "CONNECT_TIMEOUT", "2000L"
+        buildConfigField "String", "BASE_URL", '"https://api.github.com/"'
+        buildConfigField "String", "SERVER_DATE_TIME_FORMAT", '"yyyy-MM-dd\'T\'HH:mm:ss"'
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // Gson
+    implementation "com.google.code.gson:gson:$versions.gson"
+
+    // Kotlinx Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlinxCoroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.kotlinxCoroutines"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofitGsonConverter"
+}
+
+// Test Library
+dependencies {
+    testImplementation "junit:junit:$versions.junit"
+
+    // Hamcrest
+    testImplementation "org.hamcrest:hamcrest-all:$versions.hamcrest"
+
+    // Kotlinx Coroutines
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.kotlinxCoroutines"
+}

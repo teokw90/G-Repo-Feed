@@ -4,16 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.kw.project.sample.github.dev.data.entity.SearchResult
-import com.kw.project.sample.github.dev.data.source.SearchRepository
-import com.kw.project.sample.github.dev.utils.ApiResultWrapper
+import com.kw.project.module.core.data.entity.SearchResult
+import com.kw.project.module.core.data.source.GithubRepository
+import com.kw.project.module.core.utils.ApiResultWrapper
 import kotlinx.coroutines.*
 
 /**
  * Created by Kuan Wah Teo on 02/05/2020
  **/
 
-class SearchViewModel(private val searchRepository: SearchRepository): ViewModel() {
+class SearchViewModel(private val githubRepository: GithubRepository): ViewModel() {
     private var viewModelJob = Job()
     private var coroutineScope = CoroutineScope(viewModelJob + Dispatchers.IO)
 
@@ -27,7 +27,7 @@ class SearchViewModel(private val searchRepository: SearchRepository): ViewModel
 
     fun getTrendingRepository() {
         coroutineScope.launch {
-            val response = searchRepository.getTrendingRepository()
+            val response = githubRepository.getTreadingRepository()
 
             withContext(Dispatchers.Main) {
                 _searchResult.value = response
@@ -36,7 +36,7 @@ class SearchViewModel(private val searchRepository: SearchRepository): ViewModel
     }
 
     @Suppress("UNCHECKED_CASE")
-    class SearchViewModelFactory(private val searchRepository: SearchRepository): ViewModelProvider.NewInstanceFactory() {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T = (SearchViewModel(searchRepository) as T)
+    class SearchViewModelFactory(private val githubRepository: GithubRepository): ViewModelProvider.NewInstanceFactory() {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T = (SearchViewModel(githubRepository) as T)
     }
 }

@@ -1,4 +1,4 @@
-package com.kw.project.sample.github.dev.utils
+package com.kw.project.module.core.utils
 
 /**
  * Created by Kuan Wah Teo on 02/05/2020

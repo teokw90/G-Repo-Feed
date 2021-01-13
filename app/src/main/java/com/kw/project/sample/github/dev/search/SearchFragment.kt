@@ -3,30 +3,28 @@ package com.kw.project.sample.github.dev.search
 import android.os.Build
 import android.view.*
 import androidx.fragment.app.viewModels
-import com.kw.project.sample.github.dev.data.source.SearchRepositoryImpl
-import com.kw.project.sample.github.dev.data.source.remote.SearchRemoteDataSource
-
 
 import android.os.Bundle
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.webkit.RenderProcessGoneDetail
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.kw.project.module.core.data.entity.RepositoryInfo
+import com.kw.project.module.core.data.source.GithubRepositoryImpl
+import com.kw.project.module.core.data.source.remote.GithubRemoteDataSource
+import com.kw.project.module.core.utils.ApiResultWrapper
 
 import com.kw.project.sample.github.dev.R
-import com.kw.project.sample.github.dev.data.entity.RepositoryInfo
 import com.kw.project.sample.github.dev.databinding.FragmentSearchBinding
-import com.kw.project.sample.github.dev.utils.ApiResultWrapper
 import com.kw.project.sample.github.dev.utils.NavigationIconClickListener
 
 
 class SearchFragment : Fragment() {
     private val searchViewModel by viewModels<SearchViewModel> {
-        SearchViewModel.SearchViewModelFactory(SearchRepositoryImpl.getInstance(SearchRemoteDataSource.getInstance()))
+        SearchViewModel.SearchViewModelFactory(GithubRepositoryImpl.getInstance(GithubRemoteDataSource.getInstance()))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,8 +1,8 @@
-package com.kw.project.sample.github.dev.utils
+package com.kw.project.module.core.utils
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.kw.project.sample.github.dev.BuildConfig
+import com.kw.project.module.core.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -12,8 +12,7 @@ import java.util.concurrent.TimeUnit
 
 /**
  * Created by Kuan Wah Teo on 02/05/2020
- **/
-
+ */
 class RemoteDataSourceHelper {
     companion object {
         fun getOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
@@ -30,7 +29,7 @@ class RemoteDataSourceHelper {
         suspend fun <T> safeApiCall(apiCall: suspend() -> T): ApiResultWrapper<T> {
             return withContext(Dispatchers.IO) {
                 try {
-                   ApiResultWrapper.Success(apiCall.invoke())
+                    ApiResultWrapper.Success(apiCall.invoke())
                 } catch(throwable: Throwable) {
                     when(throwable) {
                         is IOException -> ApiResultWrapper.NetworkError

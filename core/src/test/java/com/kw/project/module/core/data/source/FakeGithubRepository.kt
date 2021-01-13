@@ -1,15 +1,14 @@
-package com.kw.project.sample.github.dev.data.source
+package com.kw.project.module.core.data.source
 
-import com.kw.project.sample.github.dev.data.entity.OwnerInfo
-import com.kw.project.sample.github.dev.data.entity.RepositoryInfo
-import com.kw.project.sample.github.dev.data.entity.SearchResult
-import com.kw.project.sample.github.dev.utils.ApiResultWrapper
+import com.kw.project.module.core.data.entity.OwnerInfo
+import com.kw.project.module.core.data.entity.RepositoryInfo
+import com.kw.project.module.core.data.entity.SearchResult
+import com.kw.project.module.core.utils.ApiResultWrapper
 
 /**
  * Created by Kuan Wah Teo on 02/05/2020
- **/
-
-class FakeSearchRepository: SearchRepository {
+ */
+class FakeGithubRepository: GithubRepository {
     private val ownerInfo = OwnerInfo(
         login = "Dummy",
         id = 3521738,
@@ -34,7 +33,7 @@ class FakeSearchRepository: SearchRepository {
         results = listOf(repositoryInfo)
     )
 
-    override suspend fun getTrendingRepository(): ApiResultWrapper<SearchResult> {
+    override suspend fun getTreadingRepository(): ApiResultWrapper<SearchResult> {
         return ApiResultWrapper.Success(searchResult)
     }
 

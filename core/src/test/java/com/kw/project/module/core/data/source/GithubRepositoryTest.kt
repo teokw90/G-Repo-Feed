@@ -1,23 +1,21 @@
-package com.kw.project.sample.github.dev.data.source
+package com.kw.project.module.core.data.source
 
-import com.kw.project.sample.github.dev.data.entity.OwnerInfo
-import com.kw.project.sample.github.dev.data.entity.RepositoryInfo
-import com.kw.project.sample.github.dev.data.entity.SearchResult
-import com.kw.project.sample.github.dev.data.source.remote.FakeSearchRemoteDataSource
-import com.kw.project.sample.github.dev.data.source.remote.SearchDataSource
-import com.kw.project.sample.github.dev.utils.ApiResultWrapper
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.kw.project.module.core.data.entity.OwnerInfo
+import com.kw.project.module.core.data.entity.RepositoryInfo
+import com.kw.project.module.core.data.entity.SearchResult
+import com.kw.project.module.core.data.source.remote.FakeGithubRemoteDataSource
+import com.kw.project.module.core.data.source.remote.GithubDataSource
+import com.kw.project.module.core.utils.ApiResultWrapper
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.core.IsEqual
-import org.junit.Assert.*
-import org.junit.Before
+import org.hamcrest.MatcherAssert.assertThat
+import org.jetbrains.annotations.TestOnly
 import org.junit.Test
 
 /**
  * Created by Kuan Wah Teo on 02/05/2020
  */
-@ExperimentalCoroutinesApi
-class SearchRepositoryTest {
+class GithubRepositoryTest {
     private val ownerInfo = OwnerInfo(
         login = "Dummy",
         id = 3521738,
@@ -45,20 +43,20 @@ class SearchRepositoryTest {
     private val remoteSuccessData = ApiResultWrapper.Success(searchResult)
     private val remoteGenericErrorData = ApiResultWrapper.GenericError(errorCode = -1, errorMessage = "Unknown")
 
-    private lateinit var searchRemoteDataSource: SearchDataSource
+    private lateinit var githubRemoteDataSource: GithubDataSource
 
     // Class under test
-    private lateinit var searchRepository: SearchRepository
+    private lateinit var githubRepository: GithubRepository
 
     @Test
     fun getTrendingRepository_requestsFromRemoteDataSource_returnSuccess() = runBlockingTest {
         // GIVEN - Fake data source
-        searchRemoteDataSource = FakeSearchRemoteDataSource(searchResult)
+        githubRemoteDataSource = FakeGithubRemoteDataSource(searchResult)
         // Get a reference to the class under test
-        searchRepository = SearchRepositoryImpl(searchRemoteDataSource)
+        githubRepository = GithubRepositoryImpl(githubRemoteDataSource)
 
         // WHEN - trending repository are requested from the search repository
-        val searchResult = searchRepository.getTrendingRepository() as ApiResultWrapper.Success
+        val searchResult = githubRepository.getTreadingRepository() as ApiResultWrapper.Success
 
         // THEN - trending repository are loaded from the remote data source
         assertThat(searchResult, IsEqual(remoteSuccessData))
@@ -67,12 +65,12 @@ class SearchRepositoryTest {
     @Test
     fun getTrendingRepository_requestsFromRemoteDataSource_returnGenericError() = runBlockingTest {
         // GIVEN - Fake data source
-        searchRemoteDataSource = FakeSearchRemoteDataSource()
+        githubRemoteDataSource = FakeGithubRemoteDataSource()
         // Get a reference to the class under test
-        searchRepository = SearchRepositoryImpl(searchRemoteDataSource)
+        githubRepository = GithubRepositoryImpl(githubRemoteDataSource)
 
         // WHEN - trending repository are requested from the search repository
-        val searchResult = searchRepository.getTrendingRepository() as ApiResultWrapper.GenericError
+        val searchResult = githubRepository.getTreadingRepository() as ApiResultWrapper.GenericError
 
         // THEN - trending repository are loaded from the remote data source
         assertThat(searchResult, IsEqual(remoteGenericErrorData))

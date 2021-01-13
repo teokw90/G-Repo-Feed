@@ -1,11 +1,10 @@
-package com.kw.project.sample.github.dev.data.entity
+package com.kw.project.module.core.data.entity
 
 import com.google.gson.annotations.SerializedName
 
 /**
  * Created by Kuan Wah Teo on 02/05/2020
- **/
-
+ */
 data class OwnerInfo(
     @SerializedName("login") val login: String,
     @SerializedName("id") val id: Long,

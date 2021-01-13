@@ -47,8 +47,6 @@ Vapp/src/test/java/com/kw/project/sample/github/dev/data/source/FakeSearchReposi
 Papp/src/test/java/com/kw/project/sample/github/dev/search/SearchViewModelTest.kt,6/7/679c32060c4546d307482d87c3b58c91cbbacd86
 {
 Kapp/src/main/java/com/kw/project/sample/github/dev/search/SearchFragment.kt,a/c/ace1150643a9f7e439969aa7afb16fdadca090df
-c
-3app/src/main/res/layout/list_item_search_result.xml,c/5/c5a25d0663cace0c44da6d96abda176ae8cf8cbb
 ‚
 Rapp/src/main/java/com/kw/project/sample/github/dev/utils/EspressoIdlingResource.kt,1/c/1c68bf98ee48143fe3117eb6bef6dbe53836d612
 “

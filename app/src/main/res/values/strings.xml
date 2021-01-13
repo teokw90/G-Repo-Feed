@@ -21,4 +21,5 @@
 
     <!-- Message -->
     <string name="unable_load_message">Unable to load.</string>
+    <string name="title_home">Home</string>
 </resources>

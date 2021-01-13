@@ -5,11 +5,11 @@
     <data>
         <variable
             name="repositoryInfo"
-            type="com.kw.project.sample.github.dev.data.entity.RepositoryInfo" />
+            type="com.kw.project.module.core.data.entity.RepositoryInfo" />
 
         <variable
             name="ownerInfo"
-            type="com.kw.project.sample.github.dev.data.entity.OwnerInfo" />
+            type="com.kw.project.module.core.data.entity.OwnerInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
