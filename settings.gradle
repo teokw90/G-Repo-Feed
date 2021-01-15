@@ -1,4 +1,5 @@
 rootProject.name='G Repo Feed'
 include ':app'
 include ':core'
+include ':common'
 include ':features:home'

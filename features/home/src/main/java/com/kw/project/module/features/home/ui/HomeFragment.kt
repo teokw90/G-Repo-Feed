@@ -17,7 +17,7 @@ import com.kw.project.module.core.data.source.remote.GithubRemoteDataSource
 import com.kw.project.module.core.utils.ApiResultWrapper
 import com.kw.project.module.features.home.R
 import com.kw.project.module.features.home.databinding.FragmentHomeBinding
-import com.kw.project.module.features.home.utils.NavigationIconClickListener
+import com.kw.project.module.common.utils.NavigationIconClickListener
 
 class HomeFragment: Fragment() {
     private val homeViewModel by viewModels<HomeViewModel> {

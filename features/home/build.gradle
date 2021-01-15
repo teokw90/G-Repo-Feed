@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.dynamic-feature'
     id 'kotlin-android'
-    id 'kotlin-kapt'
 }
 
 android {
@@ -37,6 +36,7 @@ android {
 
 dependencies {
     implementation project(path: ':app')
+    implementation project(path: ':common')
     implementation project(path: ':core')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -48,10 +48,6 @@ dependencies {
     implementation "androidx.core:core-ktx:$versions.androidxCore"
     implementation "androidx.constraintlayout:constraintlayout:$versions.androidxConstraintLayout"
     implementation "androidx.lifecycle:lifecycle-extensions:$versions.androidxLifecycle"
-
-    // Glide
-    implementation "com.github.bumptech.glide:glide:$versions.glide"
-    annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
 
     // Google Material Design
     implementation "com.google.android.material:material:$versions.googleMaterialDesign"

@@ -1,4 +1,4 @@
-package com.kw.project.module.features.home.utils
+package com.kw.project.module.common.utils
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -9,13 +9,13 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.animation.Interpolator
 import android.widget.ImageView
-import com.kw.project.module.features.home.R
+import com.kw.project.module.common.R
 
 /**
  * [android.view.View.OnClickListener] used to translate the product grid sheet downward on
  * the Y-axis when the navigation icon in the toolbar is pressed.
  */
-class NavigationIconClickListener @JvmOverloads internal constructor(
+class NavigationIconClickListener @JvmOverloads constructor(
     private val context: Context, private val sheet: View, private val interpolator: Interpolator? = null,
     private val openIcon: Drawable? = null, private val closeIcon: Drawable? = null) : View.OnClickListener {
 
