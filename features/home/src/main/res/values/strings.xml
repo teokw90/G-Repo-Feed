@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Page name -->
+    <string name="search_page_name">Trending</string>
+
+    <!-- Menu -->
+    <string name="gd_filter_title">Filter</string>
+    <string name="gd_search_title">Search</string>
+
+    <!-- Github Dev backdrop menu labels -->
+    <string name="gd_events_label">Events</string>
+    <string name="gd_feeds_label">Feeds</string>
+    <string name="gd_notifications_label">Notifications</string>
+    <string name="gd_starring_label">Starring</string>
+    <string name="gd_watching_label">Watching</string>
+    <string name="gd_account_label">My Account</string>
+
+    <!-- Button -->
+    <string name="retry">Retry</string>
+
+    <!-- Message -->
+    <string name="unable_load_message">Unable to load.</string>
+    <string name="title_home">Home</string>
+</resources>

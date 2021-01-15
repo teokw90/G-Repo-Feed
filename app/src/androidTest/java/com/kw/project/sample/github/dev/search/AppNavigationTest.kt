@@ -65,7 +65,7 @@ class AppNavigationTest() {
     @Test
     fun searchScreen_clickOnDrawerIcon_OpensNavigation() {
         // Start the search screen.
-        val activityScenario = ActivityScenario.launch(SearchActivity::class.java)
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         dataBindingIdlingResource.monitorActivity(activityScenario)
 
         // 1. Check that left drawer is closed at startup

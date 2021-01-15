@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.dynamic-feature'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 30
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':app')
+    implementation project(path: ':core')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // Android Jetpack
+    debugImplementation "androidx.fragment:fragment-testing:$versions.androidxFragment"
+    implementation "androidx.annotation:annotation:$versions.androidxAnnotation"
+    implementation "androidx.appcompat:appcompat:$versions.androidxAppCompat"
+    implementation "androidx.core:core-ktx:$versions.androidxCore"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.androidxConstraintLayout"
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.androidxLifecycle"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
+
+    // Google Material Design
+    implementation "com.google.android.material:material:$versions.googleMaterialDesign"
+}
