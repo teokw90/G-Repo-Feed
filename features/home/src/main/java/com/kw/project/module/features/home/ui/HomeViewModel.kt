@@ -1,5 +1,6 @@
 package com.kw.project.module.features.home.ui
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,11 +9,13 @@ import com.kw.project.module.core.data.entity.SearchResult
 import com.kw.project.module.core.data.source.GithubRepository
 import com.kw.project.module.core.utils.ApiResultWrapper
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
 /**
  * Created by Kuan Wah Teo on 02/05/2020
  */
-class HomeViewModel(private val githubRepository: GithubRepository): ViewModel() {
+class HomeViewModel
+@Inject constructor(private val githubRepository: GithubRepository): ViewModel() {
     private var viewModelJob = Job()
     private var coroutineScope = CoroutineScope(viewModelJob + Dispatchers.IO)
 

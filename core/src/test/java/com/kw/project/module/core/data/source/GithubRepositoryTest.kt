@@ -9,7 +9,6 @@ import com.kw.project.module.core.utils.ApiResultWrapper
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.core.IsEqual
 import org.hamcrest.MatcherAssert.assertThat
-import org.jetbrains.annotations.TestOnly
 import org.junit.Test
 
 /**
@@ -53,7 +52,7 @@ class GithubRepositoryTest {
         // GIVEN - Fake data source
         githubRemoteDataSource = FakeGithubRemoteDataSource(searchResult)
         // Get a reference to the class under test
-        githubRepository = GithubRepositoryImpl(githubRemoteDataSource)
+        githubRepository = DefaultGithubRepository(githubRemoteDataSource)
 
         // WHEN - trending repository are requested from the search repository
         val searchResult = githubRepository.getTreadingRepository() as ApiResultWrapper.Success
@@ -67,7 +66,7 @@ class GithubRepositoryTest {
         // GIVEN - Fake data source
         githubRemoteDataSource = FakeGithubRemoteDataSource()
         // Get a reference to the class under test
-        githubRepository = GithubRepositoryImpl(githubRemoteDataSource)
+        githubRepository = DefaultGithubRepository(githubRemoteDataSource)
 
         // WHEN - trending repository are requested from the search repository
         val searchResult = githubRepository.getTreadingRepository() as ApiResultWrapper.GenericError

@@ -14,6 +14,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import com.kw.project.sample.github.dev.MainActivity
 import com.kw.project.sample.github.dev.R
 import com.kw.project.sample.github.dev.data.source.SearchRepository
 import com.kw.project.sample.github.dev.data.source.SearchRepositoryImpl

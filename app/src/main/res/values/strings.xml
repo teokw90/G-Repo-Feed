@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Github Dev</string>
+    <string name="app_name">Github Repo Feed</string>
 
     <!-- Page name -->
     <string name="search_page_name">Trending</string>

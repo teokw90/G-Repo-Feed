@@ -1,5 +1,6 @@
 package com.kw.project.module.features.home.ui
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -10,23 +11,37 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.kw.project.module.core.data.entity.RepositoryInfo
-import com.kw.project.module.core.data.source.GithubRepositoryImpl
+import com.kw.project.module.core.data.source.DefaultGithubRepository
 import com.kw.project.module.core.data.source.remote.GithubRemoteDataSource
 import com.kw.project.module.core.utils.ApiResultWrapper
 import com.kw.project.module.features.home.R
 import com.kw.project.module.features.home.databinding.FragmentHomeBinding
 import com.kw.project.module.common.utils.NavigationIconClickListener
+import com.kw.project.module.features.home.ui.di.DaggerHomeComponent
+import com.kw.project.module.features.home.ui.di.HomeModule
+import com.kw.project.sample.github.dev.MainApplication
+import javax.inject.Inject
 
 class HomeFragment: Fragment() {
-    private val homeViewModel by viewModels<HomeViewModel> {
-        HomeViewModel.HomeViewModelFactory(GithubRepositoryImpl.getInstance(GithubRemoteDataSource.getInstance()))
-    }
+    @Inject 
+    lateinit var viewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        DaggerHomeComponent
+            .builder()
+            .coreComponent(MainApplication.coreComponent(requireContext()))
+            .homeModule(HomeModule(this))
+            .build()
+            .inject(this)
     }
 
     override fun onCreateView(
@@ -54,7 +69,7 @@ class HomeFragment: Fragment() {
             binding.searchPageGroup.background = ContextCompat.getDrawable(requireContext(), R.drawable.gd_search_background_shape)
         }
 
-        binding.homeViewModel = homeViewModel
+        binding.homeViewModel = viewModel
         binding.lifecycleOwner = this@HomeFragment
 
         // Setup Recycler View
@@ -62,7 +77,7 @@ class HomeFragment: Fragment() {
         binding.searchResultsRecyclerView.adapter = searchResultsAdapter
         binding.searchResultsRecyclerView.addItemDecoration(DividerItemDecoration(binding.searchResultsRecyclerView.context, DividerItemDecoration.VERTICAL))
 
-        homeViewModel.searchResult.observe(viewLifecycleOwner, Observer {
+        viewModel.searchResult.observe(viewLifecycleOwner, Observer {
             when(it) {
                 is ApiResultWrapper.Success -> {
                     binding.unableLoadMessage.visibility = View.GONE

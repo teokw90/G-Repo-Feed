@@ -1,8 +1,7 @@
-package com.kw.project.sample.github.dev.search
+package com.kw.project.sample.github.dev
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.kw.project.sample.github.dev.R
 
 class MainActivity : AppCompatActivity() {
 
